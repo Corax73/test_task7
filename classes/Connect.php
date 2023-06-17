@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Classes;
+
+use PDO;
+
 class Connect
 {
     public function connect()
