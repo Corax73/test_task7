@@ -1,3 +1,2 @@
-vendor/bin/
-.phpunit.result.cache
+vendor/
 config/
