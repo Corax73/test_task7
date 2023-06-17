@@ -1,6 +1,7 @@
 <?php
 
-//include $_SERVER['DOCUMENT_ROOT'] . '/index.html';
+require_once "vendor/autoload.php";
+include $_SERVER['DOCUMENT_ROOT'] . 'src/main.php';
 
 ?>
 
@@ -16,7 +17,7 @@
     <div container>
         <div class="row row-cols-2">
             <div class="col">
-                    <button id="regBtn">
+                    <button class="btn btn-primary" id="regBtn">
                         Registration
                     </button>
                     <form id="formReg" class="row gx-3 gy-2 align-items-center" style="display: none;" method="post" action="">
@@ -49,7 +50,7 @@
                 </form>
             </div>
             <div class="col">
-                    <button id="loginBtn">
+                    <button class="btn btn-primary" id="loginBtn">
                         Login
                     </button>
             </div>
