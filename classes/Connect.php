@@ -6,13 +6,18 @@ use PDO;
 
 class Connect
 {
-    public function connect()
+    /**
+     * creates a connection to the database
+     * @param string $path
+     * @return PDO
+     */
+    public function connect(string $path):PDO
     {
         static $pdo;
         
         if (!$pdo) {
-            if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/config/config.php')) {
-                $config = include $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+            if (file_exists($path)) {
+                $config = include $path;
             } else {
                 $msg = 'Создайте и настройте config.php';
                 trigger_error($msg, E_USER_ERROR);

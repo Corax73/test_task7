@@ -1,7 +1,7 @@
 <?php
 
 require_once "vendor/autoload.php";
-include $_SERVER['DOCUMENT_ROOT'] . '/src/main.php';
+include 'src/main.php';
 
 ?>
 
@@ -20,29 +20,27 @@ include $_SERVER['DOCUMENT_ROOT'] . '/src/main.php';
                     <button class="btn btn-primary" id="regBtn">
                         Registration
                     </button>
-                    <form id="formReg" class="row gx-3 gy-2 align-items-center" style="display: none;" method="post" action="">
+                    <form id="formReg" class="row gx-3 gy-2 align-items-center" style="display: none;" method="POST" action="">
                     <div class="col-sm-3">
                         <label class="visually-hidden" for="specificSizeInputName">Name</label>
-                        <input type="text" class="form-control" id="specificSizeInputName" placeholder="Name">
+                        <input type="text" name="name" class="form-control" id="specificSizeInputName" placeholder="Name">
                     </div>
                     <div class="col-sm-3">
                         <label class="visually-hidden" for="phone">Phone number with country code</label>
-                        <input type="text" id="phone" class="form-control" data-mdb-input-mask="+48 999-999-999" placeholder="Phone number with country code">
+                        <input type="text" id="phone" name="phone" class="form-control" data-mdb-input-mask="+48 999-999-999" placeholder="Phone number with country code">
                     </div>
                     <div class="col-sm-3">
-                        <label class="visually-hidden" for="specificSizeInputGroupUsername">Username</label>
-                        <div class="input-group">
-                            <div class="input-group-text">@</div>
-                            <input type="text" class="form-control" id="specificSizeInputGroupUsername" placeholder="Username">
-                        </div>
+                        <label class="visually-hidden" for="specificSizeInputName">Name</label>
+                        <input type="text" name="email" class="form-control" id="specificSizeInputName" placeholder="Email">
                     </div>
                     <div class="col-sm-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                     </div>
                     <div class="col-sm-3">
                         <label for="exampleInputPasswordConfirm" class="form-label">Confirm password</label>
-                        <input type="password" class="form-control" id="exampleInputPasswordConfirm">
+                        <input type="password" name="passwordConfirm" class="form-control" id="exampleInputPasswordConfirm">
+                        <?php if (isset($error['password'])) {?><span class="text-danger"><?php print $error['password']; ?></span><?php } ?>
                     </div>
                     <div class="col-auto">
                         <button type="submit" class="btn btn-primary">Submit</button>
