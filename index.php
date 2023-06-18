@@ -20,27 +20,33 @@ include 'src/main.php';
                     <button class="btn btn-primary" id="regBtn">
                         Registration
                     </button>
+                    <?php if (isset($message)) {?><span class="text-danger"><?php print $message; ?></span><?php } ?>
                     <form id="formReg" class="row gx-3 gy-2 align-items-center" style="display: none;" method="POST" action="">
                     <div class="col-sm-3">
                         <label class="visually-hidden" for="specificSizeInputName">Name</label>
                         <input type="text" name="name" class="form-control" id="specificSizeInputName" placeholder="Name">
+                        <?php if (isset($error['name'])) {?><span class="text-danger"><?php print $error['name']; ?></span><?php } ?>
                     </div>
                     <div class="col-sm-3">
                         <label class="visually-hidden" for="phone">Phone number with country code</label>
-                        <input type="text" id="phone" name="phone" class="form-control" data-mdb-input-mask="+48 999-999-999" placeholder="Phone number with country code">
+                        <input type="number" step="1" id="phone" name="phone" class="form-control" data-mdb-input-mask="+48 999-999-999" placeholder="Phone number with country code">
+                        <?php if (isset($error['phone'])) {?><span class="text-danger"><?php print $error['phone']; ?></span><?php } ?>
                     </div>
                     <div class="col-sm-3">
                         <label class="visually-hidden" for="specificSizeInputName">Name</label>
-                        <input type="text" name="email" class="form-control" id="specificSizeInputName" placeholder="Email">
+                        <input type="email" name="email" class="form-control" id="specificSizeInputName" placeholder="Email">
+                        <?php if (isset($error['email'])) {?><span class="text-danger"><?php print $error['email']; ?></span><?php } ?>
                     </div>
                     <div class="col-sm-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
                         <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                        <?php if (isset($error['password'])) {?><span class="text-danger"><?php print $error['password']; ?></span><?php } ?>
                     </div>
                     <div class="col-sm-3">
                         <label for="exampleInputPasswordConfirm" class="form-label">Confirm password</label>
                         <input type="password" name="passwordConfirm" class="form-control" id="exampleInputPasswordConfirm">
-                        <?php if (isset($error['password'])) {?><span class="text-danger"><?php print $error['password']; ?></span><?php } ?>
+                        <?php if (isset($error['passwordConfirm'])) {?><span class="text-danger"><?php print $error['passwordConfirm']; ?></span><?php } ?>
+                        <?php if (isset($error['passwordMismatch'])) {?><span class="text-danger"><?php print $error['passwordMismatch']; ?></span><?php } ?>
                     </div>
                     <div class="col-auto">
                         <button type="submit" class="btn btn-primary">Submit</button>
