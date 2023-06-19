@@ -2,6 +2,7 @@
 
 namespace App\Classes;
 
+session_start();
 include 'config/const.php';
 
 $message = '';
@@ -44,4 +45,18 @@ if(!empty($_POST['name']) && !empty($_POST['phone']) && !empty($_POST['email']) 
             $error[$key] = 'The field ' . $key . ' must not be empty!';
         }
     }
+}
+
+if(!empty($_POST['login']) && !empty($_POST['passwordForLogin'])) {
+    $cleaning = new InputCleaning();
+
+    $login = $cleaning->clean($_POST['login']);
+    
+    $password = $_POST['passwordForLogin'];
+    $conn = new Connect();
+    $user = new User();
+
+    $user->authUser($conn, $login, $password);
+
+    print_r($_SESSION);
 }

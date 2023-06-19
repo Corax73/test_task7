@@ -12,6 +12,7 @@ include 'src/main.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Main</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div container>
@@ -21,7 +22,7 @@ include 'src/main.php';
                         Registration
                     </button>
                     <?php if (isset($message)) {?><span class="text-danger"><?php print $message; ?></span><?php } ?>
-                    <form id="formReg" class="row gx-3 gy-2 align-items-center" style="display: none;" method="POST" action="">
+                    <form id="formReg" class="row gx-3 gy-2 align-items-center" method="POST" action="">
                     <div class="col-sm-3">
                         <label class="visually-hidden" for="specificSizeInputName">Name</label>
                         <input type="text" name="name" class="form-control" id="specificSizeInputName" placeholder="Name">
@@ -57,6 +58,21 @@ include 'src/main.php';
                     <button class="btn btn-primary" id="loginBtn">
                         Login
                     </button>
+                    <form id="formLogin" class="row gx-3 gy-2 align-items-center" method="POST" action="">
+                    <div class="col-sm-3">
+                        <label class="visually-hidden" for="specificSizeInputName">Email or phone</label>
+                        <input type="text" name="login" class="form-control" id="specificSizeInputName" placeholder="Email or phone">
+                        <?php if (isset($error['login'])) {?><span class="text-danger"><?php print $error['login']; ?></span><?php } ?>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" name="passwordForLogin" class="form-control" id="exampleInputPassword1">
+                        <?php if (isset($error['passwordForLogin'])) {?><span class="text-danger"><?php print $error['passwordForLogin']; ?></span><?php } ?>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
