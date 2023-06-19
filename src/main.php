@@ -3,7 +3,7 @@
 namespace App\Classes;
 
 include 'config/const.php';
-use PDO;
+
 $message = '';
 $error = [];
 
@@ -21,6 +21,12 @@ if(!empty($_POST['name']) && !empty($_POST['phone']) && !empty($_POST['email']) 
         $check = new UniquenessCheck();
         if ($check->checkName($conn, $name)) {
             return $error['name'] = 'Name is not unique!';
+        }
+        if ($check->checkEmail($conn, $email)) {
+            return $error['email'] = 'Email is not unique!';
+        }
+        if ($check->checkPhone($conn, $phone)) {
+            return $error['phone'] = 'Phone is not unique!';
         }
 
         $registration = $user->saveUser($conn, $name, $phone, $email, $password);
