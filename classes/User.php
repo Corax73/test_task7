@@ -78,15 +78,49 @@ class User
         }
     }
 
+    /**
+     * uploads data of a specific user
+     * @param Connect $connect
+     * @param int $id
+     * @return array
+     */
     public function loadUserData(Connect $connect, int $id):array
-        {
+    {
         $query = "SELECT * FROM `users` WHERE id = :id";
         $params = [
             ':id' => $id
         ];
         $stmt = $connect->connect(PATH_CONF)->prepare($query);
         $stmt->execute($params);
-        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
         return $row;
+    }
+
+    /**
+     * updates user data
+     * @param Connect $connect
+     * @param array $newData
+     * @param int $user_id
+     * @return bool
+     */
+    public function updateUser(Connect $connect, array $newData, int $user_id):bool
+    {
+        $keys = array_keys($newData);
+        $query = 'UPDATE `users` SET ';
+        $params = [];
+        foreach ($keys as $key) {
+            $query .= '`' . $key . '` = :' . $key . ', ';
+            $params[':' . $key] = $newData[$key];
+        }
+        $query = mb_substr($query, 0, -2);
+        $query .= ' WHERE `id` = ' . $user_id;
+
+        $stmt = $connect->connect(PATH_CONF)->prepare($query);
+        $stmt->execute($params);
+        if ($stmt) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -4,9 +4,30 @@ namespace App\Classes;
 
 session_start();
 include 'config/const.php';
+include 'config/captcha.php';
 
 $message = '';
 $error = [];
+$errorCaptcha = true;
+$secret = $key;
+ 
+if (!empty($_POST['g-recaptcha-response'])) {
+    $curl = curl_init('https://www.google.com/recaptcha/api/siteverify');
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, 'secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+    $out = curl_exec($curl);
+    curl_close($curl);
+    
+    $out = json_decode($out);
+    if ($out->success == true) {
+        $errorCaptcha = false;
+    } 
+}    
+ 
+if ($errorCaptcha) {
+    echo 'Ошибка заполнения капчи.';
+}
 
 if(!empty($_POST['name']) && !empty($_POST['phone']) && !empty($_POST['email']) && !empty($_POST['password'] && !empty($_POST['passwordConfirm']))) {
     if ($_POST['password'] == $_POST['passwordConfirm']) {
@@ -58,8 +79,6 @@ if(!empty($_POST['login']) && !empty($_POST['passwordForLogin'])) {
     $auth = $user->authUser($conn, $login, $password);
 
     if ($auth) {
-        header("Location: http://testtask7/personal_page.php");
+        header("Location: http://testtask7/personal/");
     }
-
-    print_r($_SESSION);
 }
