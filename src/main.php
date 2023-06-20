@@ -55,8 +55,11 @@ if(!empty($_POST['login']) && !empty($_POST['passwordForLogin'])) {
     $password = $_POST['passwordForLogin'];
     $conn = new Connect();
     $user = new User();
+    $auth = $user->authUser($conn, $login, $password);
 
-    $user->authUser($conn, $login, $password);
+    if ($auth) {
+        header("Location: http://testtask7/personal_page.php");
+    }
 
     print_r($_SESSION);
 }

@@ -77,4 +77,16 @@ class User
                 }
         }
     }
+
+    public function loadUserData(Connect $connect, int $id):array
+        {
+        $query = "SELECT * FROM `users` WHERE id = :id";
+        $params = [
+            ':id' => $id
+        ];
+        $stmt = $connect->connect(PATH_CONF)->prepare($query);
+        $stmt->execute($params);
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
 }
