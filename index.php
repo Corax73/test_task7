@@ -16,7 +16,7 @@ include 'src/main.php';
 </head>
 <body>
     <div container>
-        <div class="row row-cols-2">
+        <div class="row row-cols-3">
             <div class="col">
                     <button class="btn btn-primary" id="regBtn">
                         Registration
@@ -71,9 +71,13 @@ include 'src/main.php';
                     </div>
                     <div class="col-auto">
                         <div class="g-recaptcha" data-sitekey="6LdsZLUmAAAAADdnxB1vBIHWQtQcN-eAvxMYIxY1"></div>
+                        <?php if ($errorCaptcha['existence']) echo $errorCaptcha['text']; ?>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" href="http://testtask7/personal/" role="button">Authorized user profile</a>
             </div>
         </div>
     </div>

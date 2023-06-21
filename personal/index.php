@@ -55,6 +55,7 @@ include '../src/personal.php';
                 </form>
             </div>
             <div class="col">
+                <a class="btn btn-primary" href="/" role="button">To main</a>
             </div>
         </div>
     </div>

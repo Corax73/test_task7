@@ -8,7 +8,8 @@ include 'config/captcha.php';
 
 $message = '';
 $error = [];
-$errorCaptcha = true;
+$errorCaptcha['existence'] = false;
+$errorCaptcha['text'] = 'Ошибка заполнения капчи.';
 $secret = $keyCaptcha;
  
 if (!empty($_POST['g-recaptcha-response'])) {
@@ -22,11 +23,9 @@ if (!empty($_POST['g-recaptcha-response'])) {
     $out = json_decode($out);
     if ($out->success == true) {
         $errorCaptcha = false;
-    } 
-}    
- 
-if ($errorCaptcha) {
-    echo 'Ошибка заполнения капчи.';
+    } else {
+        $errorCaptcha['existence'] = true;
+    }
 }
 
 if(!empty($_POST['name']) && !empty($_POST['phone']) && !empty($_POST['email']) && !empty($_POST['password'] && !empty($_POST['passwordConfirm']))) {
