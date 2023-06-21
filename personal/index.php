@@ -25,17 +25,17 @@ include '../src/personal.php';
                     <form id="formEdit" class="row gx-3 gy-2 align-items-center" method="POST" action="">
                     <div class="col-sm-3">
                         <label class="visually-hidden" for="specificSizeInputName">Name</label>
-                        <input type="text" name="name" class="form-control" id="specificSizeInputName" placeholder="Name">
+                        <input type="text" name="name" class="form-control" id="specificSizeInputName" placeholder="<?= $data['name'] ?>">
                         <?php if (isset($error['name'])) {?><span class="text-danger"><?= $error['name']; ?></span><?php } ?>
                     </div>
                     <div class="col-sm-3">
                         <label class="visually-hidden" for="phone">Phone number with country code</label>
-                        <input type="number" step="1" id="phone" name="phone" class="form-control" data-mdb-input-mask="+48 999-999-999" placeholder="Phone number with country code">
+                        <input type="number" step="1" id="phone" name="phone" class="form-control" data-mdb-input-mask="+48 999-999-999" placeholder="<?= $data['phone'] ?>">
                         <?php if (isset($error['phone'])) {?><span class="text-danger"><?= $error['phone']; ?></span><?php } ?>
                     </div>
                     <div class="col-sm-3">
                         <label class="visually-hidden" for="specificSizeInputName">Name</label>
-                        <input type="email" name="email" class="form-control" id="specificSizeInputEmail" placeholder="Email">
+                        <input type="email" name="email" class="form-control" id="specificSizeInputEmail" placeholder="<?= $data['email'] ?>">
                         <?php if (isset($error['email'])) {?><span class="text-danger"><?= $error['email']; ?></span><?php } ?>
                     </div>
                     <div class="col-sm-3">

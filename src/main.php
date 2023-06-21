@@ -9,7 +9,7 @@ include 'config/captcha.php';
 $message = '';
 $error = [];
 $errorCaptcha = true;
-$secret = $key;
+$secret = $keyCaptcha;
  
 if (!empty($_POST['g-recaptcha-response'])) {
     $curl = curl_init('https://www.google.com/recaptcha/api/siteverify');
