@@ -22,7 +22,7 @@ if (!empty($_POST['g-recaptcha-response'])) {
     
     $out = json_decode($out);
     if ($out->success == true) {
-        $errorCaptcha = false;
+        $errorCaptcha['existence'] = false;
     } else {
         $errorCaptcha['existence'] = true;
     }
@@ -79,5 +79,7 @@ if(!empty($_POST['login']) && !empty($_POST['passwordForLogin'])) {
 
     if ($auth) {
         header("Location: http://testtask7/personal/");
+    } else {
+        $error['auth'] = 'Authentication failed';
     }
 }

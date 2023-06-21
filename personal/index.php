@@ -18,7 +18,7 @@ include '../src/personal.php';
 </head>
 <body>
     <div container>
-        <div class="row row-cols-2">
+        <div class="row row-cols-3">
             <div class="col">
                     <h2>You can edit your data</h2>
                     <?php if (isset($message)) {?><span class="text-danger"><?= $message; ?></span><?php } ?>
@@ -56,6 +56,9 @@ include '../src/personal.php';
             </div>
             <div class="col">
                 <a class="btn btn-primary" href="/" role="button">To main</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-danger" href="http://testtask7/personal/logout.php" role="button">Logout</a>
             </div>
         </div>
     </div>

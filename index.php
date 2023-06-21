@@ -70,17 +70,23 @@ include 'src/main.php';
                         <?php if (isset($error['passwordForLogin'])) {?><span class="text-danger"><?= $error['passwordForLogin']; ?></span><?php } ?>
                     </div>
                     <div class="col-auto">
-                        <div class="g-recaptcha" data-sitekey="6LdsZLUmAAAAADdnxB1vBIHWQtQcN-eAvxMYIxY1"></div>
-                        <?php if ($errorCaptcha['existence']) echo $errorCaptcha['text']; ?>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <?php if ($errorCaptcha['existence']) {echo $errorCaptcha['text'];} ?>
+                        <?php if (isset($error['auth'])) {echo $error['auth'];} ?>
+                        <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="6LdsZLUmAAAAADdnxB1vBIHWQtQcN-eAvxMYIxY1" data-callback="onSubmit">Submit</button>
                     </div>
                 </form>
             </div>
             <div class="col">
                 <a class="btn btn-primary" href="http://testtask7/personal/" role="button">Authorized user profile</a>
+                <a class="btn btn-danger" href="http://testtask7/personal/logout.php" role="button">Logout</a>
             </div>
         </div>
     </div>
+    <script>
+    function onSubmit(token) {
+        document.querySelector('#formLogin').submit();
+    }
+</script>
 <script src="js/form.js"></script>
 </body>
 </html>

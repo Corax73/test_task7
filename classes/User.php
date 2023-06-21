@@ -123,4 +123,18 @@ class User
             return false;
         }
     }
+
+    /**
+     * completes user authentication
+     * @return void
+     */
+    public function logout():void
+    {
+        session_unset ();
+        session_destroy ();
+        unset($_SESSION['user_id']);
+        unset($_SESSION['login']);
+        header ("Location: http://testtask7/");
+        exit();
+    }
 }
