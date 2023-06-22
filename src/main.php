@@ -9,7 +9,7 @@ include 'config/captcha.php';
 $message = '';
 $error = [];
 $errorCaptcha['existence'] = false;
-$errorCaptcha['text'] = 'Ошибка заполнения капчи.';
+$errorCaptcha['text'] = 'Captcha filling error.';
 $secret = $keyCaptcha;
  
 if (!empty($_POST['g-recaptcha-response'])) {
