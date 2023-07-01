@@ -130,6 +130,7 @@ class User
      */
     public function logout():void
     {
+        session_start();
         session_unset ();
         session_destroy ();
         unset($_SESSION['user_id']);
